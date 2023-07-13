@@ -237,3 +237,133 @@ Describe redundancy options
 Describe storage account options and storage types
 Identify options for moving files, including AzCopy, Azure Storage Explorer, and Azure File Sync
 Describe migration options, including Azure Migrate and Azure Data Box
+
+
+## Describe Azure storage accounts
+A storage account provides a unique namespace for your Azure Storage data that's accessible from anywhere in the world over HTTP or HTTPS. Data in this account is secure, highly available, durable, and massively scalable.
+
+When you create your storage account, you’ll start by picking the storage account type. The type of account determines the storage services and redundancy options and has an impact on the use cases. Below is a list of redundancy options that will be covered later in this module:
+
+    Locally redundant storage (LRS)
+    Geo-redundant storage (GRS)
+    Read-access geo-redundant storage (RA-GRS)
+    Zone-redundant storage (ZRS)
+    Geo-zone-redundant storage (GZRS)
+    Read-access geo-zone-redundant storage (RA-GZRS)
+
+Type	Supported services	Redundancy Options	Usage
+Standard general-purpose v2	Blob Storage (including Data Lake Storage), Queue Storage, Table Storage, and Azure Files	LRS, GRS, RA-GRS, ZRS, GZRS, RA-GZRS	Standard storage account type for blobs, file shares, queues, and tables. Recommended for most scenarios using Azure Storage. If you want support for network file system (NFS) in Azure Files, use the premium file shares account type.
+
+Premium block blobs	Blob Storage (including Data Lake Storage)	LRS, ZRS	Premium storage account type for block blobs and append blobs. Recommended for scenarios with high transaction rates or that use smaller objects or require consistently low storage latency.
+Premium file shares	Azure Files	LRS, ZRS	Premium storage account type for file shares only. Recommended for enterprise or high-performance scale applications. Use this account type if you want a storage account that supports both Server Message Block (SMB) and NFS file shares.
+
+Premium page blobs	Page blobs only	LRS	Premium storage account type for page blobs only.
+Storage account endpoints
+One of the benefits of using an Azure Storage Account is having a unique namespace in Azure for your data. In order to do this, every storage account in Azure must have a unique-in-Azure account name. The combination of the account name and the Azure Storage service endpoint forms the endpoints for your storage account.
+
+When naming your storage account, keep these rules in mind:
+
+Storage account names must be between 3 and 24 characters in length and may contain numbers and lowercase letters only.
+Your storage account name must be unique within Azure. No two storage accounts can have the same name. This supports the ability to have a unique, accessible namespace in Azure.
+The following table shows the endpoint format for Azure Storage services.
+
+### Storage service	Endpoint
+Blob Storage	https://<storage-account-name>.blob.core.windows.net
+Data Lake Storage Gen2	https://<storage-account-name>.dfs.core.windows.net
+Azure Files	https://<storage-account-name>.file.core.windows.net
+Queue Storage	https://<storage-account-name>.queue.core.windows.net
+Table Storage	https://<storage-account-name>.table.core.windows.net
+
+### Exercise - Create a storage blob
+Completed
+100 XP
+10 minutes
+This module requires a sandbox to complete.
+A sandbox gives you access to free resources. Your personal subscription will not be charged. The sandbox may only be used to complete training on Microsoft Learn. Use for any other reason is prohibited, and may result in permanent loss of access to the sandbox.
+Microsoft provides this lab experience and related content for educational purposes. All presented information is owned by Microsoft and intended solely for learning about the covered products and services in this Microsoft Learn module.
+
+Create a storage account
+In this task, we will create a new storage account.
+
+Sign in to the Azure portal at https://portal.azure.com
+
+Select Create a resource.
+
+Under Categories, select Storage.
+
+Under Storage Account, select Create.
+
+On the Basics tab of the Create storage account blade, fill in the following information. Leave the defaults for everything else.
+
+Setting	Value
+Subscription	Concierge Subscription
+Resource group	[sandbox resource group name]
+Storage account name	create a unique storage account name
+Location	default
+Performance	Standard
+Redundancy	Locally redundant storage (LRS)
+Select Review + Create to review your storage account settings and allow Azure to validate the configuration.
+
+Once validated, select Create. Wait for the notification that the account was successfully created.
+
+Select Go to resource.
+
+Work with blob storage
+In this section, you'll create a Blob container and upload a picture
+
+Under Data storage, select Containers.
+
+Screenshot of the Container add section of a storage account.
+
+Select + Container and complete the information.
+
+Setting	Value
+Name	Enter a name for the container
+Public access level	Private (no anonymous access)
+Select Create.
+
+ Note
+
+Step 4 will need an image. If you want to upload an image you already have on your computer, continue to Step 4. Otherwise, open a new browser window and search Bing for an image of a flower. Save the image to your computer.
+
+Back in the Azure portal select the container you created, then select Upload.
+
+Browse for the image file you want to upload. Select it and then select upload.
+
+ Note
+
+You can upload as many blobs as you like in this way. New blobs will be listed within the container.
+
+Select the Blob (file) you just uploaded. You should be on the properties tab.
+
+Copy the URL from the URL field and paste it into a new tab.
+
+You should receive an error message similar to the following.
+
+
+Copy
+<Error>
+  <Code>ResourceNotFound</Code>
+  <Message>The specified resource does not exist. RequestId:4a4bd3d9-101e-005a-1a3e-84bd42000000 Time:2022-06-20T00:41:31.2482656Z</Message>
+</Error>
+
+Change the access level of your blob
+Go back to the Azure portal
+
+Select Change access level
+
+Set the Public access level to Blob (anonymous read access for blobs only)
+
+Screenshot with Change access level highlighted.
+
+Select OK
+
+Refresh the tab where you attempted to access the file earlier.
+
+Congratulations - you've completed this exercise. You created a storage account, added a container to the storage account, and then uploaded blobs (files) to your container. Then you changed the access level so you could access your file from the internet.
+
+Clean up
+The sandbox automatically cleans up your resources when you're finished with this module.
+
+When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources that you leave running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
+
