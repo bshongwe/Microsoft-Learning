@@ -1,5 +1,5 @@
 # Microsoft-Learning
-## My Microsoft Certification Learning Progress
+    My Microsoft Certification Learning Progress
 
 ## Azure Fundamentals: Describe Azure architecture and services
 
@@ -9,12 +9,12 @@
     DevOps Engineer
     Solution Architect
 
-### Azure
+## Azure
 The Microsoft Azure Fundamentals training is composed of three learning paths: Microsoft Azure Fundamentals: Describe cloud concepts, Describe Azure architecture and services, and Describe Azure management and governance. Microsoft Azure Fundamentals: Azure architecture and services is the second learning path in the Microsoft Azure Fundamentals course. This learning path explores Microsoft Azure, its architecture, and some of the most commonly used services and resources.
 
 This learning path helps prepare you for Exam AZ-900: Microsoft Azure Fundamentals.
 
-Prerequisites
+### Prerequisites
 Basic familiarity with IT terms and concepts
 
 ## Azure Cloud Shell
