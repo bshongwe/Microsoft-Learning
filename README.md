@@ -1,5 +1,6 @@
 # Microsoft-Learning
     My Microsoft Certification Learning Progress
+    All files created, herein, were created by me based on the Microsoft-Learning online programme available at https://learn.microsoft.com/en-us/training
 
 ## Azure Fundamentals: Describe Azure architecture and services
 
