@@ -40,3 +40,13 @@ There are four main components of implementing the change feed processor:
     4. The delegate: The delegate is the code that defines what you, the developer, want to do with each batch of changes that the change feed processor reads.
 
 When implementing the change feed processor the point of entry is always the monitored container, from a Container instance you call GetChangeFeedProcessorBuilder
+
+Afterwards, you define the compute instance name or unique identifier with WithInstanceName, this should be unique and different in each compute instance you're deploying, and finally, which is the container to maintain the lease state with WithLeaseContainer.
+
+Calling Build gives you the processor instance that you can start by calling StartAsync.
+
+The normal life cycle of a host instance is:
+    Read the change feed.
+    If there are no changes, sleep for a predefined amount of time (customizable with WithPollInterval in the Builder) and go to #1.
+    If there are changes, send them to the delegate.
+    When the delegate finishes processing the changes successfully, update the lease store with the latest processed point in time and go to #1.
