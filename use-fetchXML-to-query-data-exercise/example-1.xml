@@ -1,0 +1,7 @@
+// sample query retrieves the accountid and name fields from the account entity
+<fetch mapping='logical'>   
+   <entity name='account'>  
+      <attribute name='accountid'/>   
+      <attribute name='name'/>   
+   </entity>  
+</fetch>
